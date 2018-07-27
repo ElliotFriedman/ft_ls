@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:04 by efriedma          #+#    #+#             */
-/*   Updated: 2018/07/25 00:39:34 by efriedma         ###   ########.fr       */
+/*   Updated: 2018/07/26 22:17:01 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@ const unsigned int	g_opt[256] = {
 	['R'] = 8,
 	['t'] = 16
 };
-/*
-void	error(int check)
-{
-	errno = 1;
-	ft_printf("%s -- option \'%c\' not found\n", strerror(errno), check);
-	//perror();
-	exit(errno);
-}
-*/
 
 int		get_opt(int argc, char **argv)
 {
@@ -50,7 +41,6 @@ int		get_opt(int argc, char **argv)
 					exit(errno);
 				}
 				flags |= g_opt[(int)argv[i][x]];
-				//error(argv[i][x]);
 				x++;
 			}
 		i++;
