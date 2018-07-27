@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:04 by efriedma          #+#    #+#             */
-/*   Updated: 2018/07/26 22:17:01 by efriedma         ###   ########.fr       */
+/*   Updated: 2018/07/27 00:09:06 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,26 @@ const unsigned int	g_opt[256] = {
 
 int		get_opt(int argc, char **argv)
 {
-	int		i;
 	int		x;
 	int		flags;
 
-	i = 1;
 	x = 1;
 	flags = 0;
-	while (i < argc)
+	while (g_index < argc)
 	{
-		if (argv[i][0] == '-') 
-			while (argv[i][x])
+		if (argv[g_index][0] == '-') 
+			while (argv[g_index][x])
 			{
-				if (!g_opt[(int)argv[i][x]])
+				if (!g_opt[(int)argv[g_index][x]])
 				{
 					errno = 1;
-					ft_printf("%s -- option \'%c\' not found\n", strerror(errno), argv[i][x]);
+					ft_printf("%s -- option \'%c\' not found\n", strerror(errno), argv[g_index][x]);
 					exit(errno);
 				}
-				flags |= g_opt[(int)argv[i][x]];
+				flags |= g_opt[(int)argv[g_index][x]];
 				x++;
 			}
-		i++;
+		g_index++;
 	}
 	return (flags);
 }

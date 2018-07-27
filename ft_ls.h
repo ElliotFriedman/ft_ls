@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:55 by efriedma          #+#    #+#             */
-/*   Updated: 2018/07/26 21:57:08 by efriedma         ###   ########.fr       */
+/*   Updated: 2018/07/27 00:07:32 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define t 16
 
 const unsigned int		g_opt[256];
+unsigned int			g_index;
 unsigned int			g_flags;
 
 typedef struct			s_file
