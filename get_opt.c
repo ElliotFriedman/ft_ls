@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:04 by efriedma          #+#    #+#             */
-/*   Updated: 2018/07/27 00:09:06 by efriedma         ###   ########.fr       */
+/*   Updated: 2018/11/15 22:22:57 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		get_opt(int argc, char **argv)
 				if (!g_opt[(int)argv[g_index][x]])
 				{
 					errno = 1;
-					ft_printf("%s -- option \'%c\' not found\n", strerror(errno), argv[g_index][x]);
+					printf("%s -- option \'%c\' not found\n", strerror(errno), argv[g_index][x]);
 					exit(errno);
 				}
 				flags |= g_opt[(int)argv[g_index][x]];

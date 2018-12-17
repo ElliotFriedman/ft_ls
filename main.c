@@ -6,37 +6,48 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:16:41 by efriedma          #+#    #+#             */
-/*   Updated: 2018/07/27 00:12:33 by efriedma         ###   ########.fr       */
+/*   Updated: 2018/11/15 22:28:17 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 unsigned int	g_flags;
-unsigned int	g_index = 1;
+short			g_index = 1;
 
-//							-a == hidden flags
-//							-l == list files, timestamps, access rights
+//							-a == hidden files and directories
+//							-l == list files in sorted order by their names in alphabetical order, timestamps, access rights
 //							-r == reverse order of the sort
 //							-R == recursively list subdirectories
 //							-t == sort by time modified. Most recent first
 
 void			ls(char **str)
 {
+	str = 0;
 	//If we have to open a directory we will use this
 	//and store this in a directory pointer
 	//
 	//DIR *n;
 	//n = opendir(".");
+	
+	//check for errors in command line arguments
+//	check_err();
 
-	//iterate past all options, we have already grabbed them
-	//
+	//this will grab all the files for the current flags
+//	get_files();
+
+	//order input by flags
+//	order_output();
+		
+	//print out the output
+//	print_output();
+	
+	//free everything
+//	free_output();
+
 	//if there are no options, just list out files in current directory,
 	//so just opendir and then figure out how to store them in a linked list
 	//Then print list
-	//
-	
-
 }
 
 
@@ -45,11 +56,10 @@ int				main(int argc, char **argv)
 	//first get all ls options.
 
 	if (argc > 1)
+	{
 		g_flags = get_opt(argc, argv);
-	if (argc > 1 && !g_flags)
 		ls(argv);
-	else
-		ls(argv);
+	}
 	ft_printf("flags %d\n", g_flags);	
 
 	return 0;
