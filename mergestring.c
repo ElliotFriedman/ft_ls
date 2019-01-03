@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 01:11:56 by efriedma          #+#    #+#             */
-/*   Updated: 2019/01/03 01:56:40 by efriedma         ###   ########.fr       */
+/*   Updated: 2019/01/03 01:57:26 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,8 @@ void		merge(t_str **a, t_str **b)
 		//now we just lost reference to this value we set
 		*a = (*a)->next;
 	}
-	
 
-	while ()
-
-		*a = head;
+	*a = head;
 }
 
 t_str		*mergesort(t_str **ret)
