@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:04 by efriedma          #+#    #+#             */
-/*   Updated: 2019/01/05 16:02:59 by efriedma         ###   ########.fr       */
+/*   Updated: 2019/01/05 19:19:09 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ const unsigned int	g_opt[256] = {
 	['t'] = 16
 };
 
+//need to structure this better, what happens if we encounter a file named -somefile, then we error when we shouldn't
 int		get_opt(int argc, char **argv)
 {
 	int		x;
