@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:55 by efriedma          #+#    #+#             */
-/*   Updated: 2018/11/15 22:28:27 by efriedma         ###   ########.fr       */
+/*   Updated: 2019/01/05 16:02:42 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
-
-# define l 1
-# define a 2
-# define r 4
-# define R 8
-# define t 16
 
 const unsigned int		g_opt[256];
 short					g_index;

@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 01:11:56 by efriedma          #+#    #+#             */
-/*   Updated: 2019/01/03 01:57:26 by efriedma         ###   ########.fr       */
+/*   Updated: 2019/01/05 16:14:30 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,35 +32,48 @@ int			listlen(t_str *ret)
 	return (i);
 }
 
-//merge everything into a
-void		merge(t_str **a, t_str **b)
+//merge everything into ret
+t_str		*merge(t_str *a, t_str *b)
 {
 	int		cmp;
 	//implement these two
 	t_str	*head;
 	t_str	*ret;
 
-
-	if (!(cmp = ft_strcmp((*a)->str, (*b)->str)))
+	//find the first string and set your head to it
+	head = ft_strcmp(a->str, b->str) < 0 ? a : b;
+	a = ft_strcmp(a->str, b->str) < 0 ? a->next : a;
+	b = ft_strcmp(a->str, b->str) > 0 ? b->next : b;
+	ret = head;
+	while (42)
 	{
-
+		printf("Merging: a %s b %s\n", a->str, b->str);
+		if (a == 0 && b == 0)
+			return (ret);
+		//check if the strings of a and b match up, cmp will be 0 if so
+		if (!(cmp = ft_strcmp(a->str, b->str)))
+		{
+			head->next = cmp < 0 ? a : b;
+			a->next = cmp < 0 ? a->next : a;
+			b->next = cmp > 0 ? b->next : b;
+		}
+		//if the strings are equal, then what do we do?
+		if (!cmp)
+		{
+			//set next value to a
+			head->next = a ? a : b;
+			//set a to the next value otherwise it is already 0
+			a = a ? a->next : 0;
+			//if there wasn't a value at a, iterate b
+			b = !a ? b->next : b;
+		}
+		printf("Merging: head %s\n", head->str);	
+		head = head->next;
 	}
-	else if ((*a)->len == (*b)->len)
-	{
-
-	}
-	else
-	{
-		//just lost reference to the current head of a, need another pointer
-		(*a)->next = cmp > 0 ? (*a)->next : (*b)->next;
-		//now we just lost reference to this value we set
-		*a = (*a)->next;
-	}
-
-	*a = head;
+	return (ret);
 }
 
-t_str		*mergesort(t_str **ret)
+t_str		*mergeSort(t_str **ret)
 {
 	//split linked list into two halves
 	t_str	*a;
@@ -70,11 +83,10 @@ t_str		*mergesort(t_str **ret)
 	len = listlen(*ret);
 	a = *ret;
 	//	b = split(ret);
+	printf("Ret value: %s\n", (*ret)->str);
 	if (!*ret || len == 1)
-		return ;
-
+		return (0);
 	len /= 2;
-
 	while (len)
 	{
 		a = a->next;
@@ -82,9 +94,10 @@ t_str		*mergesort(t_str **ret)
 	}
 	b = a->next;
 	a->next = 0;
-	mergesort(&ret);
-	mergesort(&b);
-	merge(&ret, &b);
+	mergeSort(ret);
+	mergeSort(&b);
+	*ret = merge(*ret, b);
+	return (*ret);
 }
 
 void		addvalues(t_str *ret, char **argv, int argc)
@@ -96,6 +109,7 @@ void		addvalues(t_str *ret, char **argv, int argc)
 	{
 		ret->len = (int)ft_strlen(argv[i]);
 		ret->str = argv[i];
+		printf("%s\n", argv[i]);
 		i++;
 	}
 }
@@ -103,10 +117,10 @@ void		addvalues(t_str *ret, char **argv, int argc)
 void		buildlist(t_str **ret, int argc)
 {
 	argc -= 2;
-	(*ret) = ft_memmalloc(sizeof(t_str));
+	(*ret) = ft_memalloc(sizeof(t_str));
 	while (argc > 0)
 	{
-		(*ret)->next = ft_memmalloc(sizeof(t_str));
+		(*ret)->next = ft_memalloc(sizeof(t_str));
 		(*ret) = (*ret)->next;
 		argc--;
 	}
@@ -117,17 +131,21 @@ t_str		*sortedstrings(char **argv, int argc)
 	t_str	*ret;
 
 	if (argc < 2)
-		exit();
+		exit(0);
 	buildlist(&ret, argc);
-	//build the list
-	//
-	//add values
-	//
 	addvalues(ret, argv, argc);
-	//
-	//sort
-	return (mergesort(ret));
-	//
-	//return
+	return (mergeSort(&ret));
+}
 
+int main(int argc, char **argv)
+{
+	t_str *sorted = sortedstrings(argv, argc);
+
+	while (sorted)
+	{
+		printf("%s\n", sorted->str);
+		sorted = sorted->next;
+	}
+
+	return 0;
 }
