@@ -6,15 +6,15 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:55 by efriedma          #+#    #+#             */
-/*   Updated: 2019/01/05 16:02:42 by efriedma         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:57:21 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# include "ft_printf/includes/ft_printf.h"
-# include "ft_printf/libft/libft.h"
+# include "../ft_printf/includes/ft_printf.h"
+# include "../ft_printf/libft/libft.h"
 # include <errno.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -26,12 +26,10 @@ unsigned int			g_flags;
 
 typedef struct			s_file
 {
-	//boolean for whether or not a string is a directory
-	size_t				d;
-	//name of file
+	char				isDirectory;
 	char				*name;
-	//stat puts out permissions and ownership of a directory
 	char				*statformat;
+	struct s_file		*next;
 
 }						t_file;
 

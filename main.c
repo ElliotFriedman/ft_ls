@@ -6,11 +6,11 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:16:41 by efriedma          #+#    #+#             */
-/*   Updated: 2018/11/15 22:28:17 by efriedma         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:57:37 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "includes/ft_ls.h"
 
 unsigned int	g_flags;
 short			g_index = 1;
@@ -24,6 +24,7 @@ short			g_index = 1;
 void			ls(char **str)
 {
 	str = 0;
+
 	//If we have to open a directory we will use this
 	//and store this in a directory pointer
 	//

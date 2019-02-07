@@ -6,17 +6,19 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:04 by efriedma          #+#    #+#             */
-/*   Updated: 2019/01/05 19:19:09 by efriedma         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:57:48 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
+/*
 # define l 1
 # define a 2
 # define r 4
 # define R 8
 # define t 16
+*/
 
 const unsigned int	g_opt[256] = {
 	['l'] = 1,
@@ -26,7 +28,6 @@ const unsigned int	g_opt[256] = {
 	['t'] = 16
 };
 
-//need to structure this better, what happens if we encounter a file named -somefile, then we error when we shouldn't
 int		get_opt(int argc, char **argv)
 {
 	int		x;
@@ -36,18 +37,23 @@ int		get_opt(int argc, char **argv)
 	flags = 0;
 	while (g_index < argc)
 	{
+		x = 1;
+		if (!ft_strcmp(argv[g_index], "--"))
+				return flags;
 		if (argv[g_index][0] == '-') 
 			while (argv[g_index][x])
 			{
 				if (!g_opt[(int)argv[g_index][x]])
 				{
 					errno = 1;
-					printf("%s -- option \'%c\' not found\n", strerror(errno), argv[g_index][x]);
+					ft_printf("%s -- option \'%c\' not found\n", strerror(errno), argv[g_index][x]);
 					exit(errno);
 				}
 				flags |= g_opt[(int)argv[g_index][x]];
 				x++;
 			}
+		else
+			return (flags);
 		g_index++;
 	}
 	return (flags);
