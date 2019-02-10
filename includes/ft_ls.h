@@ -6,7 +6,7 @@
 /*   By: efriedma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:05:55 by efriedma          #+#    #+#             */
-/*   Updated: 2019/02/06 16:57:21 by efriedma         ###   ########.fr       */
+/*   Updated: 2019/02/09 20:35:44 by efriedma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <dirent.h>
+# include <sys/stat.h>
 
 const unsigned int		g_opt[256];
 short					g_index;
@@ -26,13 +28,17 @@ unsigned int			g_flags;
 
 typedef struct			s_file
 {
-	char				isDirectory;
+	char				isvalid;
+	char				isdirectory;
 	char				*name;
 	char				*statformat;
+	size_t				len;
 	struct s_file		*next;
-
+	struct dirent		*file;
+	struct stat			filedata;
 }						t_file;
 
 int						get_opt(int argc, char **argv);
+t_file					*mergeSort(t_file **ret);
 
 #endif
